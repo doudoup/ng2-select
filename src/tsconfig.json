@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "../dist",
+    "rootDir": ".",
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -32,6 +33,13 @@
     "./index.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "../temp/factories"
+    "annotateForClosureCompiler": true,
+    "enableResourceInlining": true,
+    "fullTemplateTypeCheck": true,
+    "flatModuleId": "ng2-select",
+    "flatModuleOutFile": "ng2-select.js",
+    "skipTemplateCodegen": true,
+    "strictInjectionParameters": true,
+    "strictMetadataEmit": true
   }
 }
