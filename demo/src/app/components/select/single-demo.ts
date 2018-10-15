@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './single-demo.html'
 })
 export class SingleDemoComponent {
-  public items:Array<string> = [
+  public items:Array<any> = [
     {id: 0, text: 'id is 0'},
     {id: 1, text: 'id is 1'},
     {id: 2, text: 'id is 2'}

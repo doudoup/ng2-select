@@ -271,7 +271,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
       this._items = this.itemObjects = [];
     } else {
       this._items = value.filter((item: any) => {
-        if ((typeof item === 'string') || (typeof item === 'object' && item && item[this.textField] && item[this.idField])) {
+        if ((typeof item === 'string') || (typeof item === 'object' && item
+          && item[this.textField] !== undefined && item[this.textField] !== null
+          && item[this.idField] !== undefined && item[this.idField] !== null)) {
           return item;
         }
       });
@@ -318,27 +320,28 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   public itemObjects: Array<SelectItem> = [];
   public activeOption: SelectItem;
   public element: ElementRef;
+  public inputMode: boolean = false;
+  public inputValue: string = '';
+
 
   public get active(): Array<any> {
     return this._active;
   }
 
-  private set optionsOpened(value: boolean) {
+  set optionsOpened(value: boolean) {
     this._optionsOpened = value;
     this.opened.emit(value);
   }
 
-  private get optionsOpened(): boolean {
+  get optionsOpened(): boolean {
     return this._optionsOpened;
   }
 
   protected onChange: any = Function.prototype;
   protected onTouched: any = Function.prototype;
 
-  private inputMode: boolean = false;
   private _optionsOpened: boolean = false;
   private behavior: OptionsBehavior;
-  private inputValue: string = '';
   private _items: Array<any> = [];
   private _disabled: boolean = false;
   private _active: Array<SelectItem> = [];
@@ -493,7 +496,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   public registerOnChange(fn: (_: any) => {}): void { this.onChange = fn; }
   public registerOnTouched(fn: () => {}): void { this.onTouched = fn; }
 
-  protected matchClick(e: any): void {
+  matchClick(e: any): void {
     if (this._disabled === true) {
       return;
     }
@@ -504,7 +507,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  protected mainClick(event: any): void {
+  mainClick(event: any): void {
     if (this.inputMode === true || this._disabled === true) {
       return;
     }
@@ -534,20 +537,20 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     this.inputEvent(event);
   }
 
-  protected selectActive(value: SelectItem): void {
+  selectActive(value: SelectItem): void {
     this.activeOption = value;
   }
 
-  protected isActive(value: SelectItem): boolean {
+  isActive(value: SelectItem): boolean {
     return this.activeOption.id === value.id;
   }
 
-  protected removeClick(value: SelectItem, event: any): void {
+  removeClick(value: SelectItem, event: any): void {
     event.stopPropagation();
     this.remove(value);
   }
 
-  private focusToInput(value: string = ''): void {
+  focusToInput(value: string = ''): void {
     setTimeout(() => {
       let el = this.element.nativeElement.querySelector('div.ui-select-container > input');
       if (el) {
@@ -577,7 +580,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     this.selectMatch(this.activeOption);
   }
 
-  private selectMatch(value: SelectItem, e: Event = void 0): void {
+  selectMatch(value: SelectItem, e: Event = void 0): void {
     if (e) {
       e.stopPropagation();
       e.preventDefault();
