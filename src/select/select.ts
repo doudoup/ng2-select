@@ -153,7 +153,7 @@ let styles = `
            [disabled]="disabled"
            class="form-control ui-select-search"
            *ngIf="inputMode"
-           placeholder="{{active.length <= 0 ? placeholder : ''}}">
+           placeholder="{{placeholder}}">
      <!-- options template -->
      <ul *ngIf="optionsOpened && options && options.length > 0 && !firstItemHasChildren"
           class="ui-select-choices dropdown-menu" role="menu">
@@ -163,7 +163,7 @@ let styles = `
                (mouseenter)="selectActive(o)"
                (click)="selectMatch(o, $event)">
             <a href="javascript:void(0)" class="dropdown-item">
-              <div [innerHtml]="sanitize(o.text | highlight:inputValue)"></div>
+              <a [innerHtml]="sanitize(o.text | highlight:inputValue)"></a>
             </a>
           </div>
         </li>
@@ -182,7 +182,7 @@ let styles = `
                (click)="selectMatch(o, $event)"
                [ngClass]="{'active': isActive(o)}">
             <a href="javascript:void(0)" class="dropdown-item">
-              <div [innerHtml]="sanitize(o.text | highlight:inputValue)"></div>
+              <a [innerHtml]="sanitize(o.text | highlight:inputValue)"></a>
             </a>
           </div>
         </li>
@@ -219,7 +219,7 @@ let styles = `
            autocapitalize="off"
            spellcheck="false"
            class="form-control ui-select-search"
-           placeholder="{{active.length <= 0 ? placeholder : ''}}"
+           placeholder="{{placeholder}}"
            role="combobox">
      <!-- options template -->
      <ul *ngIf="optionsOpened && options && options.length > 0 && !firstItemHasChildren"
@@ -230,7 +230,7 @@ let styles = `
                (mouseenter)="selectActive(o)"
                (click)="selectMatch(o, $event)">
             <a href="javascript:void(0)" class="dropdown-item">
-              <div [innerHtml]="sanitize(o.text | highlight:inputValue)"></div>
+              <a [innerHtml]="sanitize(o.text | highlight:inputValue)"></a>
             </a>
           </div>
         </li>
@@ -249,7 +249,7 @@ let styles = `
                (click)="selectMatch(o, $event)"
                [ngClass]="{'active': isActive(o)}">
             <a href="javascript:void(0)" class="dropdown-item">
-              <div [innerHtml]="sanitize(o.text | highlight:inputValue)"></div>
+              <a [innerHtml]="sanitize(o.text | highlight:inputValue)"></a>
             </a>
           </div>
         </li>
