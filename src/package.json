@@ -1,7 +1,15 @@
 {
+  "$schema": "../node_modules/ng-packagr/package.schema.json",
   "name": "adhoc-ng2-select",
+  "version": "2.0.2",
   "peerDependencies": {
     "@angular/common": "*",
     "@angular/core": "*"
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "index.ts"
+    },
+    "dest": "../dist"
   }
 }
